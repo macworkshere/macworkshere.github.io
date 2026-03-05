@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Audit — Ubuntu Official Documentation</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f2ec;
+    --accent: #c0392b;
+    --muted: #7a7060;
+    --rule: #d8d2c4;
+    --code-bg: #edeae2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e8e4dc;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    background: var(--paper);
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3.5rem 4rem;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 600px) { .page { padding: 2rem 1.5rem; } }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  hr { border: none; border-top: 1px solid var(--rule); margin-bottom: 1.5rem; }
+  hr.thick { border-top: 2px solid var(--accent); margin-bottom: 0; }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--rule);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 500px) { .meta-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .meta-item {
+    padding: 0.7rem 0.9rem;
+    border-right: 1px solid var(--rule);
+    background: var(--code-bg);
+  }
+  .meta-item:last-child { border-right: none; }
+
+  .meta-k {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-v {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .section { margin-bottom: 2.25rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: #3a3530;
+    margin-bottom: 0.75rem;
+  }
+
+  /* THREAD TAGS */
+  .thread {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    margin-bottom: 0.4rem;
+  }
+  .thread-currency { background: #fde8e6; color: var(--accent); }
+  .thread-clarity  { background: #fdf5e6; color: #b07d00; }
+  .thread-arch     { background: #e6eef8; color: #2a4a8a; }
+
+  /* FINDINGS */
+  .finding {
+    border: 1px solid var(--rule);
+    background: white;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .finding-header {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--code-bg);
+  }
+
+  .finding-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--rule);
+    line-height: 1;
+  }
+
+  .finding-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .finding-body {
+    padding: 1rem;
+    font-size: 0.87rem;
+    line-height: 1.72;
+    color: #3a3530;
+  }
+
+  .finding-body strong { color: var(--ink); }
+
+  /* EVIDENCE BLOCK */
+  .evidence {
+    background: var(--code-bg);
+    border-left: 3px solid var(--rule);
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .evidence-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--code-bg);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* RECS */
+  .rec-item {
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    gap: 0.75rem 1rem;
+    align-items: start;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .rec-item:first-child { border-top: 1px solid var(--rule); }
+
+  .rec-arrow {
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    font-size: 0.85rem;
+    padding-top: 0.1rem;
+  }
+
+  .rec-text {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: #3a3530;
+  }
+
+  .rec-text strong { color: var(--ink); }
+
+  .pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .pill-red    { background: #fde8e6; color: var(--accent); }
+  .pill-yellow { background: #fdf5e6; color: #b07d00; }
+  .pill-blue   { background: #e6eef8; color: #2a4a8a; }
+
+  .doc-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .doc-footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .legend {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+
+  .legend-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 0.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <p class="eyebrow">Content Audit — Technical Documentation</p>
+  <h1>Ubuntu Official<br>Documentation Review</h1>
+  <p class="subtitle">Audit of the Ubuntu documentation landing page and upgrade documentation — assessing currency, clarity, and information architecture.</p>
+
+  <hr class="thick">
+  <hr>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="meta-k">Auditor</div>
+      <div class="meta-v">B. McDonough</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-k">Target</div>
+      <div class="meta-v">ubuntu.com/server/docs</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-k">Date</div>
+      <div class="meta-v">March 2026</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-k">Findings</div>
+      <div class="meta-v">5 across 3 categories</div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="section">
+    <div class="section-label">Overview</div>
+    <p>The Ubuntu Official Documentation serves a wide range of users — from first-time Linux adopters to experienced system administrators. Its landing page and upgrade documentation are among the highest-traffic entry points for users making consequential decisions about their systems. This audit identifies five findings across three categories: content currency, plain language clarity, and information architecture.</p>
+    <p>The findings share a through-line: <strong>the documentation reflects internal maintenance logic rather than user needs.</strong> Pages are named for internal taxonomy, examples reference end-of-life releases, and explanations assume a technical baseline that many users landing on these pages won't have.</p>
+
+    <div class="legend">
+      <span class="legend-label">Categories:</span>
+      <span class="thread thread-currency">Currency</span>
+      <span class="thread thread-clarity">Clarity</span>
+      <span class="thread thread-arch">Architecture</span>
+    </div>
+  </div>
+
+  <!-- FINDINGS -->
+  <div class="section">
+    <div class="section-label">Findings</div>
+
+    <div class="finding">
+      <div class="finding-header">
+        <div class="finding-num">01</div>
+        <div class="finding-title">Broken PDF links on the documentation landing page</div>
+        <span class="thread thread-currency">Currency</span>
+      </div>
+      <div class="finding-body">
+        The landing page offers Desktop and Server documentation in both HTML and PDF formats. The PDF links for multiple Ubuntu releases return 404 errors. For a user arriving at the documentation entry point — likely already uncertain about what they need — a dead link on the first page they see is an immediate trust erosion event. It signals that the documentation is not actively maintained, which casts doubt on everything else they're about to read.
+        <div class="evidence">
+          <div class="evidence-label">Observed</div>
+          PDF links for Ubuntu 25.10, 24.04 LTS, and 22.04 LTS return 404 errors on the official documentation landing page.
+        </div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header">
+        <div class="finding-num">02</div>
+        <div class="finding-title">Last-edited timestamps reveal years of neglect</div>
+        <span class="thread thread-currency">Currency</span>
+      </div>
+      <div class="finding-body">
+        Page footers display last-edited timestamps. The UpgradeNotes page — a high-stakes resource for users considering a system upgrade — was last edited in 2019. Ubuntu has released multiple major versions since then, including three LTS releases. A user consulting this page in 2026 has no way of knowing whether the guidance they're reading applies to their situation. The timestamp doesn't just signal staleness — it tells the user the documentation team isn't watching.
+        <div class="evidence">
+          <div class="evidence-label">Observed</div>
+          Footer reads: "UpgradeNotes (last edited 2019-10-27 07:37:02 by guiverc)"
+        </div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header">
+        <div class="finding-num">03</div>
+        <div class="finding-title">Upgrade instructions reference end-of-life versions as current examples</div>
+        <span class="thread thread-currency">Currency</span>
+      </div>
+      <div class="finding-body">
+        The upgrade documentation uses Ubuntu 16.04, 16.10, 17.04, 17.10, and 18.04 as its primary examples — all of which reached end of life years ago. This isn't just cosmetically outdated: users following the documented upgrade chain with current version numbers would need a completely different sequence of steps. In technical documentation, outdated version-specific instructions aren't merely stale — they can cause real harm if followed incorrectly.
+        <div class="evidence">
+          <div class="evidence-label">Observed — direct quote</div>
+          "An example of this would be going from Ubuntu 17.10 to Ubuntu 18.04 LTS... to upgrade from Ubuntu 16.10 to Ubuntu 17.10, first upgrade to 17.04, then upgrade 17.04 to 17.10."
+        </div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header">
+        <div class="finding-num">04</div>
+        <div class="finding-title">Writing assumes technical baseline that doesn't match likely audience</div>
+        <span class="thread thread-clarity">Clarity</span>
+      </div>
+      <div class="finding-body">
+        The upgrade documentation is written for users who already understand Ubuntu's versioning system, the LTS release cadence, and the risks of skipping releases. It front-loads cautionary logic before establishing basic context, uses version numbers as examples before defining what those numbers mean, and buries practical guidance in conditional clauses. A user who needs upgrade documentation is often someone who received a notification, got nervous, and went looking for help. This text does not serve that person — it serves someone who already knows most of what it says.
+        <div class="evidence">
+          <div class="evidence-label">Example of audience mismatch</div>
+          The doc defines "upgrade" as going from an earlier to a newer version — a definition that helps no one — before explaining the one-release-at-a-time rule that users actually need to understand first.
+        </div>
+        There are significantly clearer ways to explain the upgrade path using plain language and current release numbers. The information architecture of the explanation — definition first, constraint second, example third — is the least intuitive sequence for a user trying to figure out what to do.
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header">
+        <div class="finding-num">05</div>
+        <div class="finding-title">Page naming reflects internal taxonomy, not user intent</div>
+        <span class="thread thread-arch">Architecture</span>
+      </div>
+      <div class="finding-body">
+        A link labeled "reasons to update" leads to a page internally named <strong>EOLUpgrades</strong> — End of Life Upgrades. The mismatch between what a user expects to find (reasons to stay current) and what the page is actually called (a technical classification of end-of-life scenarios) is a navigation failure. Users shouldn't have to decode internal documentation taxonomy to find the content they're looking for. Page names should mirror user intent, not internal organizational logic.
+        <div class="evidence">
+          <div class="evidence-label">Observed</div>
+          Footer reads: "EOLUpgrades (last edited 2024-01-01 03:54:32 by tomreyn)" — the page a user reaches by clicking "reasons to update."
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      Across all five findings, the pattern is consistent: this documentation was built and organized around the needs and vocabulary of its maintainers, not the users arriving at it. Currency failures, clarity gaps, and architectural mismatches all point to the same root cause — a documentation system that lacks a user-centered maintenance process.
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-label">Recommendations</div>
+    <p>Ordered by urgency. Items 1 and 3 are immediate — they involve either broken functionality or actively misleading technical guidance.</p>
+
+    <div class="rec-item">
+      <div class="rec-arrow">→</div>
+      <div class="rec-text"><strong>Fix or remove broken PDF links</strong> on the documentation landing page. If PDFs are being deprecated in favor of HTML, remove the column and add a note explaining the change. Dead links on entry pages are the highest-visibility trust problem in the set.</div>
+      <span class="pill pill-red">Urgent</span>
+    </div>
+    <div class="rec-item">
+      <div class="rec-arrow">→</div>
+      <div class="rec-text"><strong>Update all version-specific upgrade examples</strong> to reflect currently supported releases. Establish a policy that documentation examples are updated with each LTS release cycle — this should be a release checklist item, not an afterthought.</div>
+      <span class="pill pill-red">Urgent</span>
+    </div>
+    <div class="rec-item">
+      <div class="rec-arrow">→</div>
+      <div class="rec-text"><strong>Rewrite the upgrade documentation</strong> for a non-expert audience, leading with what users need to do rather than definitional scaffolding. Use current LTS release numbers throughout. A step-by-step structure with role-specific paths (first-time upgrader vs. experienced admin) would serve the actual user distribution.</div>
+      <span class="pill pill-yellow">High</span>
+    </div>
+    <div class="rec-item">
+      <div class="rec-arrow">→</div>
+      <div class="rec-text"><strong>Rename pages to reflect user intent</strong> rather than internal classification. EOLUpgrades should be accessible under a name that matches what users are actually looking for. Conduct a navigation audit across the full documentation set for similar mismatches.</div>
+      <span class="pill pill-yellow">Medium</span>
+    </div>
+    <div class="rec-item">
+      <div class="rec-arrow">→</div>
+      <div class="rec-text"><strong>Implement a documentation review cadence</strong> tied to Ubuntu's release schedule. Last-edited timestamps older than one LTS cycle (two years) should trigger a mandatory review flag. Currency is not a one-time fix — it requires a process.</div>
+      <span class="pill pill-yellow">Medium</span>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Brendan 'Mac' McDonough — Content Strategy</span>
+    <span>brendan.p.mcdonough@gmail.com</span>
+    <span>macworkshere.github.io</span>
+  </div>
+
+</div>
+</body>
+</html>
