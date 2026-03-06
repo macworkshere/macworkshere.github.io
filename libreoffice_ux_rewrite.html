@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UX Copy Rewrite — LibreOffice Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f2ec;
+    --accent: #c0392b;
+    --muted: #7a7060;
+    --rule: #d8d2c4;
+    --code-bg: #edeae2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e8e4dc;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    background: var(--paper);
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3.5rem 4rem;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.15);
+  }
+
+  @media (max-width: 600px) { .page { padding: 2rem 1.5rem; } }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  hr { border: none; border-top: 1px solid var(--rule); margin-bottom: 1.5rem; }
+  hr.thick { border-top: 2px solid var(--accent); margin-bottom: 0; }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--rule);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 500px) { .meta-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .meta-item {
+    padding: 0.7rem 0.9rem;
+    border-right: 1px solid var(--rule);
+    background: var(--code-bg);
+  }
+  .meta-item:last-child { border-right: none; }
+
+  .meta-k {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-v {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .section { margin-bottom: 2.25rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: #3a3530;
+    margin-bottom: 0.75rem;
+  }
+
+  /* COMPARE */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
+
+  .compare-card {
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .compare-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    background: var(--code-bg);
+    color: var(--muted);
+  }
+
+  .compare-card.after .compare-label {
+    background: var(--accent);
+    color: white;
+  }
+
+  .compare-body {
+    padding: 1.25rem;
+    background: white;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: #999;
+  }
+
+  .compare-card.after .compare-body {
+    color: var(--ink);
+  }
+
+  /* MOCK UI */
+  .mock-window {
+    background: #f0eeeb;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .mock-titlebar {
+    background: var(--code-bg);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .mock-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink);
+  }
+
+  .mock-close {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .mock-body {
+    padding: 1.5rem;
+  }
+
+  .mock-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .mock-sub {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .mock-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .mock-option {
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.75rem;
+    background: white;
+    cursor: default;
+  }
+
+  .mock-option.selected {
+    border-color: var(--accent);
+    background: #fde8e6;
+  }
+
+  .mock-option-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .mock-option-desc {
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .mock-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mock-skip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-decoration: underline;
+    cursor: default;
+  }
+
+  .mock-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    background: var(--ink);
+    color: white;
+    padding: 0.55rem 1.25rem;
+    border-radius: 2px;
+    cursor: default;
+  }
+
+  /* FINDINGS */
+  .finding {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .finding:first-child { border-top: 1px solid var(--rule); }
+
+  .finding-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    padding-top: 0.1rem;
+  }
+
+  .finding-body {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #3a3530;
+  }
+
+  .finding-body strong { color: var(--ink); }
+
+  .annotation {
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .annotation strong { color: var(--ink); }
+
+  .doc-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .doc-footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* REWRITE NOTE */
+  .rewrite-note {
+    background: #fdf5e6;
+    border: 1px solid #f0d080;
+    border-left: 3px solid #b07d00;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    color: #5a4000;
+    margin-bottom: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <p class="eyebrow">UX Copy Rewrite — Onboarding Flow</p>
+  <h1>LibreOffice:<br>First-Launch Experience</h1>
+  <p class="subtitle">Analysis and rewrite of the onboarding dialog box that appears on first launch of application on desktop — examining how copy and interface structure fail to optimially orient new users.</p>
+
+  <hr class="thick">
+  <hr>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="meta-k">Product</div>
+      <div class="meta-v">LibreOffice</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-k">Screen</div>
+      <div class="meta-v">First-launch dialog</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-k">Trigger</div>
+      <div class="meta-v">Fresh install, first open</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-k">User state</div>
+      <div class="meta-v">Brand new, zero context, familiarity with other office applications</div>
+    </div>
+  </div>
+
+  <!-- ORIGINAL -->
+  <div class="section">
+    <div class="section-label">The Original</div>
+    <p>This dialog box appears the first time a user opens LibreOffice after a fresh install. It is the product's first impression — and its first opportunity to introduce the user to the product, or lose them by lack of orientation.</p>
+
+    <div class="mock-window">
+      <div class="mock-titlebar">
+        <span class="mock-title">Welcome to LibreOffice!</span>
+        <span class="mock-close">✕</span>
+      </div>
+      <div class="mock-body">
+        <div style="display: flex; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.75rem;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.72rem; border-bottom: 2px solid var(--ink); padding-bottom: 0.4rem;">Welcome</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted);">User Interface</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted);">Appearance</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <div>
+            <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 0.5rem;">Options</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.25rem;">○ Standard Toolbar</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem;">○ Tabbed</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.25rem;">○ Single Toolbar</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.25rem;">○ Sidebar</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.25rem;">○ Tabbed Compact</div>
+            <div style="font-size: 0.78rem; color: var(--muted); margin-bottom: 0.25rem;">○ Groupedbar Compact</div>
+            <div style="font-size: 0.78rem; color: var(--ink); margin-bottom: 0.25rem;">● Contextual Single</div>
+          </div>
+          <div>
+            <div style="font-size: 0.78rem; font-weight: 700; margin-bottom: 0.5rem;">Preview</div>
+            <div style="background: #ddd; border: 1px solid var(--rule); padding: 0.5rem; margin-bottom: 0.5rem;">
+              <div style="font-family: 'DM Mono', monospace; font-size: 0.65rem; display: flex; gap: 1rem;">
+                <span>File</span><span>Edit</span><span>View</span>
+              </div>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--muted); line-height: 1.5;">The Contextual Single interface shows functions in a single-line toolbar with context-dependent content.</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem;">
+          <div style="font-family: 'DM Mono', monospace; font-size: 0.7rem; border: 1px solid var(--rule); padding: 0.4rem 0.85rem; background: white; cursor: default;">Apply</div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 0.7rem; border: 1px solid var(--rule); padding: 0.4rem 0.85rem; background: white; cursor: default;">Next</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDINGS -->
+  <div class="section">
+    <div class="section-label">What's Wrong</div>
+
+    <div class="finding">
+      <div class="finding-num">01</div>
+      <div class="finding-body"><strong>The title does nothing.</strong> "Welcome to LibreOffice!" is a label, not a welcome. It establishes no warmth, sets no expectations, and tells the user nothing about what they're about to do or why it matters. A welcome should orient — this one just announces.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-num">02</div>
+      <div class="finding-body"><strong>The choice is premature and jargon-heavy.</strong> A user who just downloaded a word processor is being asked to choose between "Groupedbar Compact," "Tabbed Compact," and "Contextual Single" before they've opened a single document. These are developer names for UI patterns — not descriptions a new user can act on. Only "Standard Toolbar" communicates anything, adn that depends on what they've used in the past. This allows past experience with other products to set the expectations for the new user.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-num">03</div>
+      <div class="finding-body"><strong>The preview is too small to be useful, and does not provide a screen-wide preview of the options.</strong> The point of a preview is to show the user what they're choosing, and giving the user a chance to form their own context, within which they'll be working. A decontextualized three-item menu bar tells a new user nothing about how any of these options will feel in actual use — which is the only thing they need to know.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-num">04</div>
+      <div class="finding-body"><strong>"Apply" and "Next" signal nothing.</strong> Apply what? Next to where? There's no indication of how many steps exist, what they cover, how long they will take, or what happens if you just close this dialog box entirely. The user is navigating blind.</div>
+    </div>
+    <div class="finding">
+      <div class="finding-num">05</div>
+      <div class="finding-body"><strong>The tab structure assumes intent the user doesn't have.</strong> Presenting "User Interface" and "Appearance" tabs on a first-launch screen assumes the user arrived with a configuration agenda. An agenda that may not have existed until the user was forced by the product to manifest one. This agenda is a continuation of whatever word processing products came before. Where distinguishing itself from other products could be an opportunity, here it becomes a liability. The user's experience is shaped by other products, rather than this product.</div>
+    </div>
+  </div>
+
+  <!-- REWRITE -->
+  <div class="section">
+    <div class="section-label">The Rewrite</div>
+    <p>The rewrite collapses seven jargon-labeled options into three plain-language choices, names each by what it does for the user rather than what it's called internally, and adds the reversibility signal that makes the choice feel low-stakes.</p>
+
+    <div class="mock-window">
+      <div class="mock-titlebar">
+        <span class="mock-title">Step 1 of 3 — About a minute total</span>
+        <span class="mock-close">✕</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-heading">How do you want your toolbar to look?</div>
+        <div class="mock-sub">Pick what feels right — you can change this any time in View → User Interface.</div>
+
+        <div class="mock-options">
+          <div class="mock-option selected">
+            <div class="mock-option-title">Classic</div>
+            <div class="mock-option-desc">A traditional toolbar across the top. Familiar if you've used Word or older LibreOffice.</div>
+          </div>
+          <div class="mock-option">
+            <div class="mock-option-title">Tabbed</div>
+            <div class="mock-option-desc">Tools organized into tabs by task — like Microsoft Office's ribbon layout.</div>
+          </div>
+          <div class="mock-option">
+            <div class="mock-option-title">Minimal</div>
+            <div class="mock-option-desc">Just what you need, when you need it. More writing space, fewer distractions.</div>
+          </div>
+          <div class="mock-option">
+            <div class="mock-option-title">Not sure</div>
+            <div class="mock-option-desc">We'll use Classic for now. Easy to change later.</div>
+          </div>
+        </div>
+
+        <div class="mock-footer">
+          <span class="mock-skip">Skip setup</span>
+          <span class="mock-btn">Next →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <strong>What changed and why:</strong> Seven options became four — three real choices plus an explicit "not sure" that removes the pressure to decide, with guidance on changing later. Labels name what each option does for the user, not what it's called in the codebase. "You can change this any time" converts a commitment into a preference. The step counter ("Step 1 of 3") makes the process legible, finite, and chronological. "Skip setup" gives the user an exit without forcing them through something they didn't ask for.
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>Mac McDonough — Content Strategy</span>
+    <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0964686a71687d717e667b62496e6

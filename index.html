@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mac McDonough — Content & Strategy Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f2ec;
+    --accent: #c0392b;
+    --muted: #7a7060;
+    --rule: #d8d2c4;
+    --code-bg: #edeae2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 4rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: 'PORTFOLIO';
+    position: absolute;
+    top: 1.5rem;
+    left: 3.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 5rem;
+    color: rgba(216, 210, 196, 0.2);
+    letter-spacing: -2px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .header-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .header-meta a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .header-meta a:hover { border-color: var(--accent); }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav .container {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 1rem 1.25rem;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--ink);
+    border-color: var(--accent);
+  }
+
+  /* INTRO */
+  .intro {
+    padding: 3.5rem 0 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .intro p {
+    max-width: 620px;
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .intro p strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  /* SAMPLE SECTIONS */
+  .sample {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sample-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+
+  .sample-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: var(--rule);
+    line-height: 1;
+    padding-top: 0.1rem;
+  }
+
+  .sample-meta {}
+
+  .sample-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .sample h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .sample-context {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.75rem 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* UX REWRITE */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+
+  .compare-card {
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .compare-card .compare-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    background: var(--code-bg);
+    color: var(--muted);
+  }
+
+  .compare-card.after .compare-label {
+    background: var(--accent);
+    color: white;
+  }
+
+  .compare-card .compare-body {
+    padding: 1.25rem;
+    background: white;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .compare-card.before .compare-body {
+    color: #999;
+  }
+
+  .compare-card.after .compare-body {
+    color: var(--ink);
+  }
+
+  .ux-ui-mock {
+    background: #f9f9f9;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .mock-bar {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .mock-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+
+  .mock-input {
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.6rem 0.85rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: white;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    cursor: default;
+  }
+
+  .mock-helper {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .mock-error {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .mock-btn {
+    display: inline-block;
+    background: var(--ink);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 1.25rem;
+    border-radius: 2px;
+    margin-top: 0.75rem;
+    cursor: default;
+  }
+
+  .annotation {
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .annotation strong { color: var(--ink); }
+
+  /* CONTENT AUDIT */
+  .audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+  }
+
+  .audit-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--rule);
+    background: var(--code-bg);
+  }
+
+  .audit-table td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .audit-table tr:hover td { background: #faf9f6; }
+
+  .pill {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  .pill-red { background: #fde8e6; color: var(--accent); }
+  .pill-yellow { background: #fdf5e6; color: #b07d00; }
+  .pill-green { background: #e6f4ea; color: #2a7a3a; }
+
+  .rec-list { list-style: none; }
+  .rec-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.88rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .rec-list li::before {
+    content: '→';
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* RESEARCH BRIEF */
+  .brief-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 500px) { .brief-meta { grid-template-columns: 1fr; } }
+
+  .brief-meta-item {
+    background: white;
+    padding: 0.75rem 1rem;
+  }
+
+  .brief-meta-item .meta-k {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .brief-meta-item .meta-v {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .brief-section {
+    margin-bottom: 1.25rem;
+  }
+
+  .brief-section h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .brief-section p, .brief-section li {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #3a3530;
+  }
+
+  .brief-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .brief-section ul li {
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .brief-section ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .callout {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    padding: 0.85rem 1.1rem;
+    background: white;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+
+  /* STYLE GUIDE */
+  .style-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .style-section h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 500px) { .do-dont { grid-template-columns: 1fr; } }
+
+  .do-item, .dont-item {
+    padding: 0.85rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    line-height: 1.5;
+  }
+
+  .do-item {
+    background: #e8f5ea;
+    border-left: 3px solid #2a7a3a;
+    color: #1a3a20;
+  }
+
+  .dont-item {
+    background: #fde8e6;
+    border-left: 3px solid var(--accent);
+    color: #5a1a15;
+  }
+
+  .do-item::before {
+    content: '✓ ';
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    color: #2a7a3a;
+  }
+
+  .dont-item::before {
+    content: '✗ ';
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .voice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 500px) { .voice-grid { grid-template-columns: 1fr; } }
+
+  .voice-card {
+    border: 1px solid var(--rule);
+    padding: 1rem;
+    background: white;
+  }
+
+  .voice-trait {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .voice-desc {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .tone-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .tone-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--code-bg);
+  }
+
+  .tone-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  .tone-table td:first-child {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* scroll animations */
+  .sample { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .sample.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <p class="eyebrow">Writing & Content Strategy Portfolio</p>
+    <h1>Mac McDonough</h1>
+    <div class="header-meta">
+      <span>Bryan, TX</span>
+      <span>737.366.1329</span>
+      <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b161a18031a0f030c1409103b1c161a121755181416">[email&#160;protected]</a></span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="container">
+    <a href="#intro">About</a>
+    <a href="#ux">UX Copy</a>
+    <a href="#audit">Content Audit</a>
+    <a href="#brief">Research Brief</a>
+    <a href="#style">Style Guide</a>
+  </div>
+</nav>
+
+<section class="intro" id="intro">
+  <div class="container">
+    <p>I'm a writer and content strategist with a background in <strong>literary theory, rhetoric, and content operations.</strong>&nbsp; At ProQuest I built UX documentation, internal knowledge bases, and content systems for cross-functional teams — including a SharePoint site, an Airtable database for accessibility workflows, and structured documentation that made complex internal processes navigable for non-technical colleagues. These samples demonstrate how I think about <strong>language, structure, and audience</strong> across different content contexts — all oriented toward SaaS and tech products.</p>
+  </div>
+</section>
+
+<!-- SAMPLE 1: UX COPY REWRITE -->
+<section class="sample" id="ux">
+  <div class="container">
+    <div class="sample-header">
+      <div class="sample-num">01</div>
+      <div class="sample-meta">
+        <div class="sample-tag">UX Copy Rewrite</div>
+        <h2>Onboarding & Error States</h2>
+        <div class="sample-context">Context: B2B project management SaaS — rewriting onboarding microcopy and error messages to reduce friction and drop-off</div>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card before">
+        <div class="compare-label">Before</div>
+        <div class="compare-body">
+          <strong>Welcome to Stackboard!</strong><br><br>
+          Please fill out all required fields to complete your account setup. Fields marked with an asterisk (*) are required. If you experience any issues, contact our support team.
+        </div>
+      </div>
+      <div class="compare-card after">
+        <div class="compare-label">After</div>
+        <div class="compare-body">
+          <strong>Let's get your workspace ready.</strong><br><br>
+          Takes about two minutes. We'll use this to personalize your dashboard and connect your team.
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <strong>What changed:</strong> Removed compliance language ("required fields," asterisks) from the emotional first impression. The original protects the product; the rewrite serves the user. Forward momentum ("Let's") replaces procedural instruction.
+    </div>
+
+    <div class="ux-ui-mock" style="margin-top: 1.5rem;">
+      <div class="mock-bar">
+        <div class="mock-dot"></div>
+        <div class="mock-dot"></div>
+        <div class="mock-dot"></div>
+      </div>
+      <div style="font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Error state — before & after</div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;">Before</div>
+          <div class="mock-input">user@</div>
+          <div class="mock-error">Error: Invalid email format.</div>
+          <div class="mock-helper" style="margin-top: 0.35rem; color: #ccc;">Password</div>
+          <div class="mock-input">••••••••</div>
+          <div class="mock-error">Error: Password does not meet requirements.</div>
+        </div>
+        <div>
+          <div style="font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #2a7a3a; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;">After</div>
+          <div class="mock-input">user@</div>
+          <div class="mock-error">Finish your email address — something like <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97eef8e2d7f4f8fae7f6f9eeb9f4f8fa">[email&#160;protected]</a></div>
+          <div class="mock-helper" style="margin-top: 0.35rem;">Password</div>
+          <div class="mock-input">••••••••</div>
+          <div class="mock-error">Use 8+ characters with at least one number.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation" style="margin-top: 0.75rem;">
+      <strong>Principle applied:</strong> Error messages should tell users what to do, not describe what went wrong. "Invalid email format" is a system diagnosis. "Finish your email address — something like <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="70091f0530131f1d00111e095e131f1d">[email&#160;protected]</a>" is a human hand on the shoulder.
+    </div>
+
+  </div>
+</section>
+
+<!-- SAMPLE 2: CONTENT AUDIT -->
+<section class="sample" id="audit">
+  <div class="container">
+    <div class="sample-header">
+      <div class="sample-num">02</div>
+      <div class="sample-meta">
+        <div class="sample-tag">Content Audit</div>
+        <h2>Help Center Audit</h2>
+        <div class="sample-context">Context: Mid-size SaaS analytics platform — auditing 6 high-traffic help articles for clarity, accuracy, and user alignment</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Ubuntu Official Documentation — Upgrade Docs & Landing Page</div>
+      <p style="font-size: 0.88rem; line-height: 1.75; color: #3a3530; margin-bottom: 1rem;">This audit examines the Ubuntu documentation landing page and upgrade documentation — a high-traffic entry point for users making consequential decisions about their systems. Five findings across three categories: content currency, plain language clarity, and information architecture.</p>
+      <ul class="rec-list">
+        <li>Broken PDF links on the documentation landing page — immediate trust erosion at the entry point</li>
+        <li>Last-edited timestamps revealing years of neglect, including a 2019 date on upgrade-critical content</li>
+        <li>Upgrade instructions referencing end-of-life versions as current examples — actively misleading for users on current releases</li>
+        <li>Writing that assumes a technical baseline mismatched to the likely audience</li>
+        <li>Page naming that reflects internal taxonomy rather than user intent</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 1.25rem;">
+      <a href="ubuntu_audit.html" style="font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;">View full audit: Ubuntu Official Documentation →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- SAMPLE 3: RESEARCH BRIEF -->
+<section class="sample" id="brief">
+  <div class="container">
+    <div class="sample-header">
+      <div class="sample-num">03</div>
+      <div class="sample-meta">
+        <div class="sample-tag">Research Brief</div>
+        <h2>User Mental Models in Onboarding</h2>
+        <div class="sample-context">Context: Internal brief for a product team exploring why new users abandon setup flows before completing workspace configuration</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Research Brief — Onboarding Drop-off: Patterns & Signals</div>
+
+      <div class="brief-meta">
+        <div class="brief-meta-item">
+          <div class="meta-k">Prepared for</div>
+          <div class="meta-v">Product & Content Teams</div>
+        </div>
+        <div class="brief-meta-item">
+          <div class="meta-k">Scope</div>
+          <div class="meta-v">Literature review + UX pattern analysis</div>
+        </div>
+        <div class="brief-meta-item">
+          <div class="meta-k">Output</div>
+          <div class="meta-v">Strategic content recommendations</div>
+        </div>
+      </div>
+
+      <div class="brief-section">
+        <h4>Background</h4>
+        <p>Users who abandon onboarding flows before completing workspace setup represent a recoverable loss — the intent was there; the friction won. This brief synthesizes UX research on onboarding mental models and identifies content-side interventions most likely to reduce drop-off without requiring engineering resources.</p>
+      </div>
+
+      <div class="brief-section">
+        <h4>Key patterns identified</h4>
+        <ul>
+          <li><strong>Progress ambiguity:</strong> Users don't know how many steps remain. Without a visible endpoint, the perceived cost of continuing is undefined — and undefined cost defaults to "too high."</li>
+          <li><strong>Commitment anxiety:</strong> Setup questions that feel permanent (team name, billing, integrations) trigger hesitation. Users want to explore before they commit. Copy that signals reversibility ("You can always change this later") measurably reduces drop-off.</li>
+          <li><strong>Value deferred:</strong> Users abandon when they can't see what they're configuring toward. Showing a preview of the finished dashboard state during setup addresses this directly.</li>
+          <li><strong>Terminology friction:</strong> When onboarding uses product-internal terms ("workspace," "environment," "instance") before users have context for them, confusion compounds. Plain language at the entry point; product vocabulary earned over time.</li>
+        </ul>
+      </div>
+
+      <div class="brief-section">
+        <h4>Content-side recommendations</h4>
+        <ul>
+          <li>Add a persistent step counter (Step 2 of 4) with time estimates at each stage</li>
+          <li>Rewrite commitment-heavy prompts to foreground reversibility</li>
+          <li>Replace product jargon in first three onboarding screens with plain-language equivalents</li>
+          <li>Add a single-sentence "why we ask" annotation beneath each data collection field</li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        "Users don't abandon onboarding because your product is bad. They abandon because the cost of continuing feels uncertain and the value of finishing feels abstract."
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SAMPLE 4: STYLE GUIDE -->
+<section class="sample" id="style">
+  <div class="container">
+    <div class="sample-header">
+      <div class="sample-num">04</div>
+      <div class="sample-meta">
+        <div class="sample-tag">Style Guide Excerpt</div>
+        <h2>Voice & Tone Guidelines</h2>
+        <div class="sample-context">Context: Excerpt from a content style guide for a B2B SaaS product — covering brand voice, tone calibration by context, and common usage rules</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Brand Voice — Who We Sound Like</div>
+
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="voice-trait">Direct, not blunt.</div>
+          <div class="voice-desc">We say what we mean in the fewest words that still feel human. We don't pad. We also don't bark.</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-trait">Confident, not smug.</div>
+          <div class="voice-desc">We know our product works. We don't need to oversell it or perform expertise. We show, don't tell.</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-trait">Helpful, not hand-holdy.</div>
+          <div class="voice-desc">We respect that our users are smart. We give them what they need and get out of the way.</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-trait">Human, not quirky.</div>
+          <div class="voice-desc">Warmth comes from clarity and care, not from puns. We don't do "whimsy." We do real.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Tone by Context</div>
+      <table class="tone-table">
+        <thead>
+          <tr>
+            <th>Context</th>
+            <th>Tone</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Onboarding</td>
+            <td>Warm, forward-moving</td>
+            <td>"Let's get your workspace ready — takes about two minutes."</td>
+          </tr>
+          <tr>
+            <td>Error states</td>
+            <td>Calm, specific, actionable</td>
+            <td>"Couldn't connect. Check that your API key is active, then try again."</td>
+          </tr>
+          <tr>
+            <td>Empty states</td>
+            <td>Inviting, low-pressure</td>
+            <td>"Nothing here yet. Add your first project to get started."</td>
+          </tr>
+          <tr>
+            <td>Success states</td>
+            <td>Brief, genuine</td>
+            <td>"Done. Your report is ready to share."</td>
+          </tr>
+          <tr>
+            <td>Billing / sensitive</td>
+            <td>Clear, neutral, no spin</td>
+            <td>"Your plan renews on March 14. You'll be charged $49."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Common Usage Rules</div>
+      <div class="style-section">
+        <h4>Contractions</h4>
+        <div class="do-dont">
+          <div class="do-item">We'll get that sorted out for you.</div>
+          <div class="dont-item">We will get that sorted out for you.</div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem;">Use contractions in UI copy and conversational contexts. Avoid in legal, billing, or highly technical documentation.</p>
+      </div>
+
+      <div class="style-section">
+        <h4>Button labels</h4>
+        <div class="do-dont">
+          <div class="do-item">Save changes / Connect Slack / Export report</div>
+          <div class="dont-item">Submit / Confirm / OK / Proceed</div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem;">Labels should name the action, not describe the gesture. "Save changes" tells users what happens. "Submit" tells them nothing.</p>
+      </div>
+
+      <div class="style-section">
+        <h4>Referring to users</h4>
+        <div class="do-dont">
+          <div class="do-item">You can update this anytime.</div>
+          <div class="dont-item">Users can update this anytime. / The user may update this.</div>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.4rem;">Address the user directly. Third-person creates distance and reads like documentation written for an audience that isn't in 
