@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrivener Style Guide — Mac McDonough</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f5f2ec;
+    --accent: #c0392b;
+    --muted: #7a7060;
+    --rule: #d8d2c4;
+    --code-bg: #edeae2;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #e8e4dc;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  /* PAGE WRAPPER */
+  .page {
+    background: var(--paper);
+    max-width: 820px;
+    margin: 0 auto;
+    box-shadow: 0 4px 60px rgba(0,0,0,0.15);
+  }
+
+  /* HEADER */
+  .doc-header {
+    border-bottom: 2px solid var(--accent);
+    padding: 3.5rem 4rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .doc-header::before {
+    content: 'STYLE GUIDE';
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 4.5rem;
+    color: rgba(216,210,196,0.25);
+    letter-spacing: -2px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .doc-subtitle {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 560px;
+    margin-bottom: 1.75rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .meta-item { }
+
+  .meta-k {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.15rem;
+  }
+
+  .meta-v {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* BODY */
+  .doc-body {
+    padding: 0 4rem 4rem;
+  }
+
+  @media (max-width: 600px) {
+    .doc-header, .doc-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+    h1 { font-size: 1.8rem; }
+    .doc-header::before { display: none; }
+  }
+
+  /* SECTION */
+  .section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    padding-top: 0.25rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  /* ENTRIES */
+  .entry {
+    margin-bottom: 2rem;
+  }
+
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-rule {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .entry-rule strong {
+    font-style: normal;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #3a3530;
+    margin-bottom: 0.6rem;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* BEFORE / AFTER */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 560px) { .compare { grid-template-columns: 1fr; } }
+
+  .compare-card {
+    border: 1px solid var(--rule);
+  }
+
+  .compare-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.85rem;
+    background: var(--code-bg);
+    color: var(--muted);
+  }
+
+  .compare-card.after .compare-label {
+    background: var(--accent);
+    color: white;
+  }
+
+  .compare-body {
+    padding: 0.85rem;
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: #999;
+    background: white;
+  }
+
+  .compare-card.after .compare-body {
+    color: var(--ink);
+  }
+
+  /* RECOMMENDATION BOX */
+  .rec {
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding: 0.85rem 1.1rem;
+    margin-top: 0.85rem;
+    font-size: 0.83rem;
+    line-height: 1.7;
+    color: #3a3530;
+  }
+
+  .rec-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+
+  /* ORDERED LIST — restructure recs */
+  .rec-list {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.1rem;
+  }
+
+  .rec-list li {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #3a3530;
+    margin-bottom: 0.35rem;
+    padding-left: 0.25rem;
+  }
+
+  .rec-list li:last-child { margin-bottom: 0; }
+
+  /* INLINE CODE */
+  code {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8em;
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    color: var(--ink);
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* FOOTER */
+  .doc-footer {
+    padding: 1.5rem 4rem;
+    border-top: 2px solid var(--accent);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: var(--code-bg);
+  }
+
+  .doc-footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0 0;
+  }
+
+  .toc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem 2rem;
+  }
+
+  @media (max-width: 500px) { .toc-list { grid-template-columns: 1fr; } }
+
+  .toc-list a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+
+  .toc-list a:hover { color: var(--accent); }
+
+  .toc-num {
+    color: var(--accent);
+    margin-right: 0.4rem;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <p class="eyebrow">Content Style Guide — Consultant Review</p>
+    <h1>Scrivener:<br>Voice, Structure & Content</h1>
+    <p class="doc-subtitle">A style guide and content audit for Literature & Latte's Scrivener product site — addressing voice consistency, audience positioning, structural problems, and recommended rewrites.</p>
+
+    <div class="meta-row">
+      <div class="meta-item">
+        <div class="meta-k">Prepared by</div>
+        <div class="meta-v">Mac McDonough</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-k">Product</div>
+        <div class="meta-v">Scrivener — literatureandlatte.com</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-k">Scope</div>
+        <div class="meta-v">Overview page + SEO section</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-k">Status</div>
+        <div class="meta-v">Draft for review</div>
+      </div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-label">Contents</div>
+      <ul class="toc-list">
+        <li><a href="#propositions"><span class="toc-num">01</span>Core Propositions</a></li>
+        <li><a href="#terminology"><span class="toc-num">02</span>Terminology</a></li>
+        <li><a href="#voice"><span class="toc-num">03</span>Voice & Tone</a></li>
+        <li><a href="#audience"><span class="toc-num">04</span>Audience & Positioning</a></li>
+        <li><a href="#metaphor"><span class="toc-num">05</span>Metaphor & Reference</a></li>
+        <li><a href="#headings"><span class="toc-num">06</span>Headings</a></li>
+        <li><a href="#seo"><span class="toc-num">07</span>The SEO Section</a></li>
+        <li><a href="#structure"><span class="toc-num">08</span>Structure & Duplication</a></li>
+        <li><a href="#typography"><span class="toc-num">09</span>Typography</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="doc-body">
+
+    <!-- 01 CORE PROPOSITIONS -->
+    <div class="section" id="propositions">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Core Propositions</h2>
+      </div>
+      <p>These three ideas should underpin every content decision across the Scrivener product, documentation, and marketing. If a piece of copy doesn't serve at least one of them, it probably doesn't need to exist.</p>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Proposition 1</strong>You are a writer. Come in.</div>
+        <p>Scrivener's language should welcome every kind of writer — not just novelists, not just professionals, not just people who already think of themselves as writers. Screenwriters, academics, bloggers, journalists, researchers, and anyone who puts words together with intention belongs here. The copy should reflect that from the first word of the landing page to the last line of the documentation. Non-novelists should never feel like they snuck in through the back door.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Proposition 2</strong>Scrivener grows the writer, not just the writing.</div>
+        <p>The different views, organizational structures, and planning tools Scrivener offers are not just features — they are alternative ways of experiencing what it means to be a writer. The corkboard is not a productivity tool; it is a way of seeing your work differently. Copy should articulate that distinction. Scrivener does not just hold your writing. It changes how you think about it.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Proposition 3</strong>It's yours. Forever.</div>
+        <p>Scrivener runs on a perpetual license. In a subscription-everything world, that is a genuine differentiator and an underarticulated value proposition. Your writing lives in software you own outright. The identity you develop as a writer while using it is not rented. That is worth saying clearly, and saying often.</p>
+      </div>
+    </div>
+
+    <!-- 02 TERMINOLOGY -->
+    <div class="section" id="terminology">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Terminology</h2>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>Use <code>writing</code>. Not <code>draft</code>. Not <code>manuscript</code>.</div>
+        <p><code>Draft</code> implies incompleteness. <code>Manuscript</code> skews literary and excludes non-novelists. <code>Writing</code> is universal — a screenwriter, an academic, a blogger, and a novelist all know what their writing is. Default to <code>writing</code> throughout the site, documentation, and UI.</p>
+        <div class="compare">
+          <div class="compare-card before">
+            <div class="compare-label">Avoid</div>
+            <div class="compare-body">Grow your manuscript organically, idea by idea.</div>
+          </div>
+          <div class="compare-card after">
+            <div class="compare-label">Prefer</div>
+            <div class="compare-body">Grow your writing organically, idea by idea.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 VOICE & TONE -->
+    <div class="section" id="voice">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Voice & Tone</h2>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>Every word should be load-bearing.</div>
+        <p>If a word can be removed without losing meaning, remove it. Words like <code>numerous</code>, <code>various</code>, <code>a wide range of</code>, and <code>unique</code> signal that a sentence has not found its point yet. Cut them first. If the sentence does not survive the cut, rewrite it until it does.</p>
+        <div class="compare">
+          <div class="compare-card before">
+            <div class="compare-label">Avoid</div>
+            <div class="compare-body">There are numerous writing softwares available, each offering unique features tailored to different writing needs.</div>
+          </div>
+          <div class="compare-card after">
+            <div class="compare-label">Prefer</div>
+            <div class="compare-body">Here are the closest free alternatives to Scrivener.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>No throat-clearing.</div>
+        <p>Preamble that delays the point — <code>It's worth noting that</code>, <code>As you may know</code>, <code>There are a number of ways to</code> — adds length without adding meaning. Start with the thing you are trying to say.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>The site has two voices. It should have one.</div>
+        <p>The overview page opens with genuine personality — tight, confident, written by people who know the product. Then it hits the SEO section and the voice collapses entirely. Generic, hollow, interchangeable with any software product on the market. A single voice should hold across every section of the site, including the parts optimized for search. If the SEO content cannot be written in the product's actual voice, it should not exist in its current form.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Corollary</strong>SEO content is still content.</div>
+        <p>Search engine optimization is not an excuse for abandoning the reader. A sentence that would not survive the load-bearing word test does not belong on the page regardless of what keywords it contains.</p>
+      </div>
+    </div>
+
+    <!-- 04 AUDIENCE -->
+    <div class="section" id="audience">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Audience & Positioning</h2>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Finding</strong>The site knows its audience is broad. The headline doesn't.</div>
+        <p>The "Who uses Scrivener?" section lists: academics, autobiographers, biographers, children's authors, journalists, lawyers, novelists, poets, screenwriters, students, translators. That is the real tent. The hero headline says "Novel Writing Software" and repeats it six times in the first section. The gap between who the product actually serves and how it chooses to be positioned is the central content problem on the site.</p>
+        <div class="rec">
+          <div class="rec-label">Recommendation</div>
+          Lead with the broader identity. Let novel writing be one entry in a larger list, not the frame that everyone else has to fit inside. A screenwriter who lands on the page should feel addressed in the first sentence, not in the fine print.
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Finding</strong>If you distinguish by genre, distinguish fully.</div>
+        <p>If the product speaks to novelists specifically, it should speak to screenwriters, academics, and bloggers with equal specificity. Scrivener already has genre-specific project templates. They are buried in onboarding. Surface them in marketing and documentation as proof that the product was built with your kind of writing in mind — not as an afterthought.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Finding</strong>The identity proposition is undersold.</div>
+        <p>Scrivener does not just organize writing — it confers a kind of identity. Someone who does not think of themselves as A Writer who uses Scrivener starts to. That is not a feature; it is a value proposition, and it should be named. The perpetual license makes it permanent: the software is yours, and so is the writer you become using it.</p>
+      </div>
+    </div>
+
+    <!-- 05 METAPHOR -->
+    <div class="section" id="metaphor">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>Metaphor & Reference</h2>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>Retire the ring-binder.</div>
+        <p>The ring-binder as organizational metaphor assumes a physical world many current users did not grow up in. Under approximately 30, ring-binders are not a cultural touchstone. The metaphor requires the user to bring a felt relationship with an object they may not have. Replace with digital-native equivalents: folder structures, workspaces, tabs, notes apps. The metaphor should feel like home.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Note</strong>"Typewriter. Ring-binder. Scrapbook." — the hero tagline.</div>
+        <p>Typewriter retains some cultural currency; it carries romance and the idea of committed writing. Scrapbook is interesting and underexplored as a metaphor for the way Scrivener actually works. Ring-binder is the weak link in the sequence. More broadly: all three require the user to bring something with them. Consider what the entry point feels like for a 24-year-old grad student or a first-time screenwriter — both of whom are in the tent, and both of whom the tagline is currently writing past.</p>
+      </div>
+    </div>
+
+    <!-- 06 HEADINGS -->
+    <div class="section" id="headings">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>Headings</h2>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>Headings should do work, not just label.</div>
+        <p>A heading like "Import" describes a feature. A heading that describes a benefit has a personality and earns the user's attention. Headings are the first thing a user reads — make them count.</p>
+
+        <div class="rec">
+          <div class="rec-label">Working rewrites</div>
+          <ol class="rec-list">
+            <li>"Piece it Together" → <strong>Piece it Together: See the Forest, the Trees, and Everything in Between</strong></li>
+            <li>"Familiar Text Editing" → <strong>Same Text Editor, Brand New Possibilities</strong></li>
+            <li>"Import" → <strong>Import: Have Baggage, Can Bring It</strong></li>
+            <li>"Corkboard" → <strong>Corkboard: A Plan with a View</strong></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>No redundancy in headlines.</div>
+        <p>"Novel Writing Software: A Book Writing App for Writers" says the same thing three times. Each word in a headline should add something the previous words did not.</p>
+      </div>
+    </div>
+
+    <!-- 07 SEO SECTION -->
+    <div class="section" id="seo">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2>The SEO Section: A Case Study</h2>
+      </div>
+
+      <p>The section beginning "Novel Writing Software: A Book Writing App For Writers" is the most significant content failure on the page. It warrants its own section in this guide because it is not a collection of small problems — it is a structural and editorial problem that undermines everything the rest of the page builds.</p>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Finding</strong>Scrivener should not appear in its own comparative list.</div>
+        <p>The "Top Novel Writing Software" section lists Scrivener and Grammarly as featured products. Scrivener appearing in a comparative list on its own website is redundant at best. The user is already here. Cut it.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Finding</strong>Grammarly is not a book writing app.</div>
+        <p>It is a grammar and style checker. It does not help you structure a writing project, manage research, or organize scenes. Listing it alongside Scrivener misrepresents both products and confuses the user about what they are actually choosing between.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Finding</strong>"Novel writing" and "book writing" are not separate categories.</div>
+        <p>The current page alternates between them as though they require separate coverage. They do not. Consolidate.</p>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Recommendation</strong>Restructure the section around a single logical sequence.</div>
+        <div class="rec">
+          <div class="rec-label">Proposed order</div>
+          <ol class="rec-list">
+            <li><strong>What Scrivener offers</strong> — lead with the product, its features, its strengths. This is the page the user came to.</li>
+            <li><strong>What to look for in writing software</strong> — brief and genuinely useful, not a generic checklist that applies to any app.</li>
+            <li><strong>How to organize before you write</strong> — the mind mapping section belongs here, including the Scapple mention. It is a natural extension of the "what to look for" conversation.</li>
+            <li><strong>Free alternatives if you're not ready to commit</strong> — honest and user-serving. Note that yWriter and Manuskript are the closest functional equivalents to Scrivener among free options. Note clearly that none of these tools — Scrivener included — are for any particular kind of writer exclusively.</li>
+            <li><strong>The trial argument</strong> — Scrivener's 30-day trial is genuinely generous and undersold. It is 30 days of actual use, not 30 calendar days. Same for Scapple. A user who knows this is far more likely to download and actually engage.</li>
+          </ol>
+        </div>
+        <p style="margin-top: 0.85rem;">The through-line for this section should be: help the user make a good decision, not help the page rank. A user who tries a free alternative, finds it lacking, and comes back is a better conversion than one who felt pushed into a purchase they were not ready for.</p>
+      </div>
+    </div>
+
+    <!-- 08 STRUCTURE -->
+    <div class="section" id="structure">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2>Structure & Duplication</h2>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Finding</strong>Content duplication is a structural problem, not an editorial one.</div>
+        <p>Almost every section on the overview page appears twice — the Mac version and the Windows version rendered sequentially in the same scroll. To a user reading the page, it reads as the copy repeating itself for no reason. This compounds every other readability problem: a user already working to parse dense feature descriptions now encounters them twice.</p>
+        <div class="rec">
+          <div class="rec-label">Recommendation</div>
+          Platform-specific content should be handled through tabs, toggles, or separate pages — not by doubling the word count of an already long overview. The platform differentiation is a legitimate need. The current execution makes the page feel broken.
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 TYPOGRAPHY -->
+    <div class="section" id="typography">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2>Typography</h2>
+      </div>
+
+      <div class="entry">
+        <div class="entry-rule"><strong>Rule</strong>Pick a lane: serif or sans-serif. Not both.</div>
+        <p>Using serif fonts for headings and sans-serif for body copy creates visual friction that works against the sense of a unified, considered product. Mixed type pairings can be done well — but only when the choice is intentional and consistent. The current execution feels inconsistent rather than designed.</p>
+        <p>For a writing-focused product where the page itself is part of the experience, serif throughout is the stronger choice. It signals craft, permanence, and literary seriousness without excluding non-literary users. Whatever the final decision, it should be made once and held everywhere.</p>
+      </div>
+    </div>
+
+  </div><!-- end doc-body -->
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <span>Mac McDonough — Content Strategy</span>
+    <span>macxatxwork@gmail.com</span>
+    <span>macworkshere.github.io</span>
+  </div>
+
+</div>
+</body>
+</html>
