@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumbtack Pro Page — UX Copy Analysis | Mac McDonough</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:     #1a1a1a;
+    --paper:   #f5f2ec;
+    --accent:  #c0392b;
+    --muted:   #7a7060;
+    --rule:    #d8d2c4;
+    --code-bg: #edeae2;
+    --text:    #3a3530;
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    background: var(--paper);
+    color: var(--text);
+    line-height: 1.75;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--rule);
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  .byline {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+
+  header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .meta {
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 2.5rem 0 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* ── SCREENSHOT CALLOUT ── */
+  .screenshot-note {
+    background: var(--code-bg);
+    border-left: 2px solid var(--rule);
+    padding: 0.9rem 1.1rem;
+    margin: 1.5rem 0;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  /* ── COPY COMPARISON ── */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1.75rem 0;
+  }
+
+  @media (max-width: 560px) { .comparison { grid-template-columns: 1fr; } }
+
+  .copy-block {
+    padding: 1.25rem;
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+  }
+
+  .copy-block.after {
+    border-left: 2px solid var(--accent);
+  }
+
+  .copy-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.9rem;
+    display: block;
+    color: var(--muted);
+  }
+
+  .copy-block.after .copy-label { color: var(--accent); }
+
+  .copy-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .copy-block ul li {
+    font-size: 0.85rem;
+    color: var(--text);
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.55;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .copy-block ul li:last-child { border-bottom: none; }
+
+  .copy-block.before ul li::before {
+    content: "–";
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .copy-block.after ul li::before {
+    content: "→";
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── ANNOTATION ── */
+  .annotation {
+    background: var(--code-bg);
+    border-left: 2px solid var(--rule);
+    padding: 0.9rem 1.1rem;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .annotation strong { color: var(--ink); font-weight: 400; }
+
+  /* ── WHAT WORKS ── */
+  .what-works {
+    background: var(--code-bg);
+    border-left: 2px solid var(--rule);
+    padding: 0.9rem 1.1rem;
+    margin: 1.5rem 0;
+  }
+
+  .what-works p { color: var(--text); margin: 0; font-size: 0.85rem; }
+
+  /* ── PRINCIPLE ── */
+  .principle {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    margin-top: 1.75rem;
+  }
+
+  .principle p {
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  .principle strong { font-weight: 400; font-style: normal; color: var(--muted); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0;
+    margin-top: 2rem;
+  }
+
+  footer p {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  footer a { color: var(--ink); text-decoration: underline; }
+  footer a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <p class="byline">Speculative UX Copy Analysis · Thumbtack for Pros</p>
+    <h1>Talking <em>about</em> pros<br>isn't the same as talking <em>to</em> them.</h1>
+    <div class="meta">
+      <span>Mac McDonough</span>
+      <span>Content Designer · UX Writer</span>
+      <span>macworkshere.github.io</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- INTRO -->
+    <div class="intro">
+      <p>Thumbtack's pro-facing marketing page has a structural problem. It performs an understanding of its users without demonstrating it. The copy talks about what pros get. It doesn't talk about what pros need to hear to sign up and stick around.</p>
+      <p>This is a speculative analysis of one section of that page, grounded in direct observation. The rewrite is situated in what a pro, whether someone running a small business, trying to achieve consistent work, or introducing themselves to an unfamiliar app, needs to know.</p>
+    </div>
+
+    <!-- OBSERVATION 1: THE FOUR BULLETS -->
+    <section>
+      <p class="section-label">01</p>
+      <h2>The "why pros" section answers the wrong questions.</h2>
+
+      <div class="screenshot-note">
+        Four benefit statements alongside icons: "We limit competition for each job among pros." / "Easily request and receive payments from customers." / "We match you with jobs that exactly fit your preferences." / "You get conversations with real customers. Not just views."
+      </div>
+
+      <p>Two of the four bullets describe things Thumbtack does. One describes something a pro can do. One describes something that might happen. None of them address what a pro is seeking out when they come to the page. They don't need to be persuaded into a service. They need to be persuaded that Thumbtack is the service. That means actual benefits.</p>
+
+      <p>A pro evaluating a new platform asks four questions, in roughly this order: Will the terms be fair? Will I get real work? Can I figure this thing out? Can I get paid through it? The current copy brushes past the first question entirely, hedges the second, and buries the third and fourth under soft language.</p>
+
+      <p>"We match you with jobs that exactly fit your preferences" is a promise no platform can keep. "You get conversations with real customers. Not just views" is the strongest line on the page. It names a real frustration pros have with other platforms. The rest don't follow its lead.</p>
+
+      <div class="comparison">
+        <div class="copy-block before">
+          <span class="copy-label">Current copy</span>
+          <ul>
+            <li>We limit competition for each job among pros.</li>
+            <li>Easily request and receive payments from customers.</li>
+            <li>We match you with jobs that exactly fit your preferences.</li>
+            <li>You get conversations with real customers. Not just views.</li>
+          </ul>
+        </div>
+        <div class="copy-block after">
+          <span class="copy-label">Proposed rewrite</span>
+          <ul>
+            <li>Fair terms for you, the customer, and the platform. No surprises.</li>
+            <li>Leads for the kind of work you want. Consistently.</li>
+            <li>Quote, message, and close jobs from one place.</li>
+            <li>You get conversations with real customers. Not just views.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="annotation">
+        <strong>Why this works better:</strong> Each line now answers a question a pro is asking. "No surprises" addresses the trust gap that makes pros hesitant to try a new platform. "Consistently" acknowledges that one good lead isn't the point — sustainable work is. "Quote, message, and close from one place" is concrete enough to be a reason to sign up. The fourth line stays because it's doing the job.
+      </div>
+    </section>
+
+    <!-- OBSERVATION 2: COMPARISON TABLE -->
+    <section>
+      <p class="section-label">02</p>
+      <h2>The comparison table compares Thumbtack to a ghost.</h2>
+
+      <div class="screenshot-note">
+        A feature table lists Thumbtack in one column and "Other Services" in another, with thumbs up for Thumbtack and thumbs down for the competition across every row.
+      </div>
+
+      <p>"Other Services" is doing no work. Every pro who's been burned by a competing platform knows exactly who that column is talking about. Named, or described with enough specificity to be recognizable, the comparison reads as honesty and Thumbtack's integrity. Unnamed, it reads as evasion.</p>
+
+      <p>The table lists features without translating them into what they mean for a pro's day. "Competition limit" is a platform mechanic. What it means is: you won't lose a lead to fifteen other people quoting the same job. Features need material benefits. Otherwise they're not features.</p>
+    </section>
+
+    <!-- OBSERVATION 3: WHAT WORKS -->
+    <section>
+      <p class="section-label">03</p>
+      <h2>The persistent signup bar is doing everything right.</h2>
+
+      <div class="what-works">
+        <p>The "What service do you provide?" bar — service field, location field, "Sign up for free" — appears consistently across the page. It's action-oriented, low-friction, location-aware, and free of jargon. It asks one question and makes the next step obvious. This is the model the rest of the page should follow.</p>
+      </div>
+
+      <p>The gap between this bar and the surrounding copy is the clearest signal of what the page needs. The bar treats the pro as someone who knows what they do and wants to get started. The surrounding copy treats the pro as someone who needs to be convinced that pros matter. They're different audiences, addressed in different registers, on the same page.</p>
+    </section>
+
+    <!-- PRINCIPLE -->
+    <section>
+      <p class="section-label">The underlying problem</p>
+      <h2>The page performs understanding instead of demonstrating it.</h2>
+
+      <p>Thumbtack knows its pro users. The product features suggest real research into what pros need. The marketing copy hasn't caught up. It describes benefits in the language of a platform talking about its users, not in the language of a platform that has listened to them.</p>
+
+      <p>The fix isn't a rewrite of the whole page. It's a consistent application of the question the signup bar answers: what does this pro need to see to take the first step, the second step, and the next steps?</p>
+
+      <div class="principle">
+        <p><strong>The principle:</strong> Copy that talks to a pro as someone running a business, not as someone who needs to be reassured that running a business is hard, closes the gap between what the platform is and what it communicates.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Mac McDonough · Content Designer · UX Writer · <a href="https://macworkshere.github.io">macworkshere.github.io</a> · macxatxwork@gmail.com</p>
+  </div>
+</footer>
+
+</body>
+</html>
